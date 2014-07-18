@@ -28,8 +28,8 @@ fi
 echo "create table ${TABLENAME}"
 
 create_table_sql="create table ${TABLENAME}(
-id int default 0,
-name char(6) NOT NULL
+id int primary key auto_increment not null,
+name char(50)
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;"
 echo ${create_table_sql} | ${MYSQL_CMD} ${DBNAME}
 if [ $? -ne 0 ]
@@ -37,9 +37,3 @@ then
 echo "create  table ${DBNAME}.${TABLENAME}  fail ..."
 fi
 
-insert_sql="insert into ${TABLENAME} values (\"1\",\"wang\");"
-echo ${insert_sql} | ${MYSQL_CMD} ${DBNAME}
-if [ $? -ne 0 ]
-then
-echo "insert fail ..."
-fi
