@@ -10,6 +10,9 @@ ENV CATALINA_HOME /tomcat
 RUN wget http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O tomcat.tar.gz
 RUN tar zxf tomcat.tar.gz && rm tomcat.tar.gz && mv apache-tomcat* tomcat
 
+RUN wget http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.0.8.tar.gz
+RUN tar zxf mysql-connector-java-5.0.8.tar.gz && mv mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar tomcat/lib && rm -rf mysql-connector-java-5.0.8*
+
 ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
